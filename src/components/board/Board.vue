@@ -4,7 +4,7 @@
     <div @click="setSelectedElement(cell, index)" data-draggable-target v-for="(cell, index) in cells" :key="index"
       class="board-cell"
       :class="[{ 'cell-highlight': isDragging && currentHoverIndex === index }, ...getClassByCell(index)]">
-      <div v-if="cell" class="board-cell__count">{{ cell.count }}</div>
+      <div v-if="cell" class="board-cell__count" :title="`${cell.count}`">{{ cell.count }}</div>
       <div v-if="cell" class="board-item" draggable="true" @dragstart="handleDragStart(index, $event, cell)"
         @dragend="handleDragEnd">
         <slot :item="cell" :position="index + 1" />
@@ -235,9 +235,7 @@ onMounted(() => {
     bottom: 0;
     right: 0;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    padding: 2px 4px;
 
     width: 16px;
     height: 16px;
@@ -250,6 +248,10 @@ onMounted(() => {
     font-weight: 500;
 
     user-select: none;
+
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
   }
 }
 

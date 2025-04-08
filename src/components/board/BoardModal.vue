@@ -27,7 +27,6 @@ import type { BaseEntityType } from './types';
 defineProps({
   selectedElement: {
     type: Object as PropType<T | null>,
-
   }
 })
 
