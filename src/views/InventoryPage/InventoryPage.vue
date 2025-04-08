@@ -5,7 +5,7 @@
         <UserInfo class="inventory-page__content-user" :avatar="{ src: avatar, alt: 'avatar' }" />
       </div>
       <div class="inventory-page__content-column">
-        <Board :list="inventory" :getPreview="getPreview" @update-board="updateBoard">
+        <Board :list="inventory || []" :getPreview="getPreview" @update-board="updateBoard">
           <template #modalContent="{ value }">
             <InventoryModalContent :inventory="value as EntityType" />
           </template>
@@ -49,7 +49,7 @@ import type { EntityType } from './types';
 import InventoryModalContent from '@/components/inventoryModalContent/InventoryModalContent.vue';
 import { LocalStorageService } from '@/service';
 
-const cache = LocalStorageService.getData('entity', testData);
+const cache = LocalStorageService.getData<typeof testData>('entity', testData);
 const inventory = ref(cache)
 
 const getPreview = (event: Event, item: EntityType) => {

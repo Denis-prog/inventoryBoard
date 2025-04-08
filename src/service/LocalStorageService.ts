@@ -1,7 +1,7 @@
 import LocalDbService from './LocalDbService'
 
 export class LocalStorageService implements LocalDbService {
-  getData<T, F = null, Key = string>(key: Key, fallback: F) {
+  getData<T, F = T | null, Key = string>(key: Key, fallback: F) {
     try {
       const data = localStorage.getItem(`${key}`)
 
